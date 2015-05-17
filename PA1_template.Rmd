@@ -83,8 +83,8 @@ Then calculate which 5-minute interval, on average across all the days in the da
 ```{r max_steps_per_interval}
 maxSteps <- stepsMeanPerInterval[stepsMeanPerInterval$Steps == 
                                      max(stepsMeanPerInterval$Steps), "Interval"]
-sprintf("The '%s' 5 minutes interval contains the maximum number of steps, 
-        on average across all the days in the dataset.", maxSteps)
+sprintf(paste("The '%s' 5 minutes interval contains the maximum number of steps,", 
+        "on average across all the days in the dataset."), maxSteps)
 ```
 
 
@@ -122,8 +122,8 @@ ggplot(newStepsPerDay, aes(x = Steps)) +
 Compare these values with the estimates from the first part of the assignment. Find out the impact of imputing missing data on the estimates of the total daily number of steps:
 
 ```{r compare_mean_media}
-sprintf("The mean and median of the total number of steps per day for the new data is %.2f and %.2f. 
-        The difference from the original mean and median is %.2f and %.2f.", 
+sprintf(paste("The mean and median of the total number of steps per day for the new data is %.2f and %.2f.", 
+        "The difference from the original mean and median is %.2f and %.2f."), 
         mean(newStepsPerDay$Steps), median(newStepsPerDay$Steps),
         mean(stepsPerDay$Steps) - mean(newStepsPerDay$Steps), 
         median(stepsPerDay$Steps) - median(newStepsPerDay$Steps))

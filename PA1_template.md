@@ -104,12 +104,12 @@ Then calculate which 5-minute interval, on average across all the days in the da
 ```r
 maxSteps <- stepsMeanPerInterval[stepsMeanPerInterval$Steps == 
                                      max(stepsMeanPerInterval$Steps), "Interval"]
-sprintf("The '%s' 5 minutes interval contains the maximum number of steps, 
-        on average across all the days in the dataset.", maxSteps)
+sprintf(paste("The '%s' 5 minutes interval contains the maximum number of steps,", 
+        "on average across all the days in the dataset."), maxSteps)
 ```
 
 ```
-## [1] "The '835' 5 minutes interval contains the maximum number of steps, \n        on average across all the days in the dataset."
+## [1] "The '835' 5 minutes interval contains the maximum number of steps, on average across all the days in the dataset."
 ```
 
 
@@ -157,15 +157,15 @@ Compare these values with the estimates from the first part of the assignment. F
 
 
 ```r
-sprintf("The mean and median of the total number of steps per day for the new data is %.2f and %.2f. 
-        The difference from the original mean and median is %.2f and %.2f.", 
+sprintf(paste("The mean and median of the total number of steps per day for the new data is %.2f and %.2f.", 
+        "The difference from the original mean and median is %.2f and %.2f."), 
         mean(newStepsPerDay$Steps), median(newStepsPerDay$Steps),
         mean(stepsPerDay$Steps) - mean(newStepsPerDay$Steps), 
         median(stepsPerDay$Steps) - median(newStepsPerDay$Steps))
 ```
 
 ```
-## [1] "The mean and median of the total number of steps per day for the new data is 10766.19 and 10766.19. \n        The difference from the original mean and median is 0.00 and -1.19."
+## [1] "The mean and median of the total number of steps per day for the new data is 10766.19 and 10766.19. The difference from the original mean and median is 0.00 and -1.19."
 ```
 
 Therefore, the mean of new data without NAs is the same as the original mean. The new median is less than orignal one by 1.19.
