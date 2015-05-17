@@ -4,7 +4,7 @@ output:
   html_document:
     keep_md: true
 author: "George Xiao"
-date: "`r Sys.Date()`"
+date: "5/16/2015"
 ---
 
 ## Introduction
@@ -81,8 +81,10 @@ ggplot(stepsMeanPerInterval, aes(x= Interval, y = Steps)) +
 Then calculate which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps:
 
 ```{r max_steps_per_interval}
-maxSteps <- stepsMeanPerInterval[stepsMeanPerInterval$Steps == max(stepsMeanPerInterval$Steps), "Interval"]
-sprintf("The '%s' 5 minutes interval contains the maximum number of steps, on average across all the days in the dataset.", maxSteps)
+maxSteps <- stepsMeanPerInterval[stepsMeanPerInterval$Steps == 
+                                     max(stepsMeanPerInterval$Steps), "Interval"]
+sprintf("The '%s' 5 minutes interval contains the maximum number of steps, 
+        on average across all the days in the dataset.", maxSteps)
 ```
 
 
@@ -99,7 +101,8 @@ Secondly, use mean for that 5-minute interval to fill in all of the missing valu
 newActivity <- activity 
 for (i in 1:nrow(newActivity)) {
     if (is.na(newActivity$steps[i]))
-        newActivity$steps[i] <- stepsMeanPerInterval[stepsMeanPerInterval$Interval == newActivity$interval[i], "Steps"]
+        newActivity$steps[i] <- stepsMeanPerInterval[stepsMeanPerInterval$Interval 
+                                                     == newActivity$interval[i], "Steps"]
     }
 ```
 
@@ -119,7 +122,8 @@ ggplot(newStepsPerDay, aes(x = Steps)) +
 Compare these values with the estimates from the first part of the assignment. Find out the impact of imputing missing data on the estimates of the total daily number of steps:
 
 ```{r compare_mean_media}
-sprintf("The mean and median of the total number of steps taken per day for the new data is %.2f and %.2f. The difference from the original mean and median is %.2f and %.2f.", 
+sprintf("The mean and median of the total number of steps per day for the new data is %.2f and %.2f. 
+        The difference from the original mean and median is %.2f and %.2f.", 
         mean(newStepsPerDay$Steps), median(newStepsPerDay$Steps),
         mean(stepsPerDay$Steps) - mean(newStepsPerDay$Steps), 
         median(stepsPerDay$Steps) - median(newStepsPerDay$Steps))
@@ -132,7 +136,8 @@ Use the dataset with the filled-in missing values for this part. Create a new fa
 
 ```{r weekdays}
 for (i in 1:nrow(activity)) {
-    activity$weekday[i]<-if(weekdays(activity$date[i]) %in% c("Sunday", "Saturday")) "Weekend" else "Weekday"
+    activity$weekday[i] <- 
+        if(weekdays(activity$date[i]) %in% c("Sunday", "Saturday")) "Weekend" else "Weekday"
 }
 ```
 

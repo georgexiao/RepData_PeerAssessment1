@@ -1,6 +1,6 @@
 # Reproducible Research: Peer Assessment 1
 George Xiao  
-`r Sys.Date()`  
+5/16/2015  
 
 ## Introduction
 This assignment makes use of data from a personal activity monitoring device. This device collects data at 5 minute intervals through out the day. The data consists of two months of data from an anonymous individual collected during the months of October and November, 2012 and include the number of steps taken in 5 minute intervals each day.
@@ -102,12 +102,14 @@ Then calculate which 5-minute interval, on average across all the days in the da
 
 
 ```r
-maxSteps <- stepsMeanPerInterval[stepsMeanPerInterval$Steps == max(stepsMeanPerInterval$Steps), "Interval"]
-sprintf("The '%s' 5 minutes interval contains the maximum number of steps, on average across all the days in the dataset.", maxSteps)
+maxSteps <- stepsMeanPerInterval[stepsMeanPerInterval$Steps == 
+                                     max(stepsMeanPerInterval$Steps), "Interval"]
+sprintf("The '%s' 5 minutes interval contains the maximum number of steps, 
+        on average across all the days in the dataset.", maxSteps)
 ```
 
 ```
-## [1] "The '835' 5 minutes interval contains the maximum number of steps, on average across all the days in the dataset."
+## [1] "The '835' 5 minutes interval contains the maximum number of steps, \n        on average across all the days in the dataset."
 ```
 
 
@@ -130,7 +132,8 @@ Secondly, use mean for that 5-minute interval to fill in all of the missing valu
 newActivity <- activity 
 for (i in 1:nrow(newActivity)) {
     if (is.na(newActivity$steps[i]))
-        newActivity$steps[i] <- stepsMeanPerInterval[stepsMeanPerInterval$Interval == newActivity$interval[i], "Steps"]
+        newActivity$steps[i] <- stepsMeanPerInterval[stepsMeanPerInterval$Interval 
+                                                     == newActivity$interval[i], "Steps"]
     }
 ```
 
@@ -154,14 +157,15 @@ Compare these values with the estimates from the first part of the assignment. F
 
 
 ```r
-sprintf("The mean and median of the total number of steps taken per day for the new data is %.2f and %.2f. The difference from the original mean and median is %.2f and %.2f.", 
+sprintf("The mean and median of the total number of steps per day for the new data is %.2f and %.2f. 
+        The difference from the original mean and median is %.2f and %.2f.", 
         mean(newStepsPerDay$Steps), median(newStepsPerDay$Steps),
         mean(stepsPerDay$Steps) - mean(newStepsPerDay$Steps), 
         median(stepsPerDay$Steps) - median(newStepsPerDay$Steps))
 ```
 
 ```
-## [1] "The mean and median of the total number of steps taken per day for the new data is 10766.19 and 10766.19. The difference from the original mean and median is 0.00 and -1.19."
+## [1] "The mean and median of the total number of steps per day for the new data is 10766.19 and 10766.19. \n        The difference from the original mean and median is 0.00 and -1.19."
 ```
 
 Therefore, the mean of new data without NAs is the same as the original mean. The new median is less than orignal one by 1.19.
@@ -172,7 +176,8 @@ Use the dataset with the filled-in missing values for this part. Create a new fa
 
 ```r
 for (i in 1:nrow(activity)) {
-    activity$weekday[i]<-if(weekdays(activity$date[i]) %in% c("Sunday", "Saturday")) "Weekend" else "Weekday"
+    activity$weekday[i] <- 
+        if(weekdays(activity$date[i]) %in% c("Sunday", "Saturday")) "Weekend" else "Weekday"
 }
 ```
 
